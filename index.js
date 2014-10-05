@@ -80,7 +80,7 @@
 
 			scrollPos = this.getScrollableEl().attr(this.getSettings().scrollPosAttr);
 
-			return (scrollPos) ? scrollPos : 0;
+			return (scrollPos) ? parseInt(scrollPos, 10) : 0;
 		};
 
 		ScrollableHA.prototype.setScrollPos = function (pos) {
@@ -101,6 +101,8 @@
 				.css('-ms-transform', translate)
 				.css('-o-transform', translate)
 				.css('transform', translate);
+
+			this.getScrollableEl().attr(this.getSettings().scrollPosAttr, pos);
 
 			this.getScrollableEl().trigger('scroll');
 
