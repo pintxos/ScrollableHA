@@ -152,6 +152,16 @@
 
 		};
 
+		/* Helpers
+		----------------------------------------------- */
+		function setCssTransform ($el, value) {
+
+			$el.css('-webkit-transform', value)
+				.css('-moz-transform', value)
+				.css('-ms-transform', value)
+				.css('-o-transform', value)
+				.css('transform', value);
+		}
 
 		/* Export
 		----------------------------------------------- */
