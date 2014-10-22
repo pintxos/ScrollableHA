@@ -78,7 +78,7 @@
 		ScrollableHA.prototype.getScrollPos = function () {
 			var scrollPos;
 
-			scrollPos = this.getScrollableEl().attr(this.getSettings().scrollPosAttr);
+			scrollPos = $.data(this.getScrollableEl(), 'ScrollableHA_scrollpos');
 
 			return (scrollPos) ? parseInt(scrollPos, 10) : 0;
 		};
@@ -87,22 +87,15 @@
 
 			var translate;
 
-			this._scrollPos = pos;
-
 			if(this.getSettings().orientation === 'horizontal') {
 				translate = 'translate3d('+ -(pos) +'px, 0, 0)';
 			}else {
 				translate = 'translate3d(0, '+ -(pos) +'px, 0)';
 			}
 
-			this.getChildren()
-				.css('-webkit-transform', translate)
-				.css('-moz-transform', translate)
-				.css('-ms-transform', translate)
-				.css('-o-transform', translate)
-				.css('transform', translate);
+			setCssTransform(this.getChildren(), translate);
 
-			this.getScrollableEl().attr(this.getSettings().scrollPosAttr, pos);
+			$.data(this.getScrollableEl(), 'ScrollableHA_scrollpos', this._scrollPos);
 
 			this.getScrollableEl().trigger('scroll');
 
@@ -134,7 +127,7 @@
 			return this._query(this.getSettings().selectors.scrollableEl);
 		};
 
-		ScrollableHA.prototype.getChildren = function () {
+		ScrollableHA.prototype.getChildren = function (forceQuery) {
 			var selector;
 
 			if(typeof this._$children === 'undefined') {
