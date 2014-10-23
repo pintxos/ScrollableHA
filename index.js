@@ -124,7 +124,11 @@
 		 * @return {jQuery}
 		 */
 		ScrollableHA.prototype.getScrollableEl = function () {
-			return this._query(this.getSettings().selectors.scrollableEl);
+			var selector;
+
+			selector = this.getSettings().selectors.scrollableEl;
+
+			return (typeof selector === 'undefined') ? this.getEl() : this._query(selector);
 		};
 
 		ScrollableHA.prototype.getChildren = function (forceQuery) {
