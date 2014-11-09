@@ -68,7 +68,8 @@
 		 * @return {void}
 		 */
 		ScrollableHA.prototype.init = function () {
-			Component._super.init.call(this);
+			this.setScrollPos(0);
+			ScrollableHA._super.init.call(this);
 		};
 
 		ScrollableHA.prototype._getProp = function (prop) {
@@ -76,11 +77,8 @@
 		};
 
 		ScrollableHA.prototype.getScrollPos = function () {
-			var scrollPos;
 
-			scrollPos = $.data(this.getScrollableEl(), 'ScrollableHA_scrollpos');
-
-			return (scrollPos) ? parseInt(scrollPos, 10) : 0;
+			return $.data(this.getScrollableEl(), 'scrollPos');
 		};
 
 		ScrollableHA.prototype.setScrollPos = function (pos) {
@@ -95,10 +93,11 @@
 
 			setCssTransform(this.getChildren(), translate);
 
-			$.data(this.getScrollableEl(), 'ScrollableHA_scrollpos', this._scrollPos);
+			this._scrollPos = pos;
+
+			$.data(this.getScrollableEl(), 'scrollPos', pos);
 
 			this.getScrollableEl().trigger('scroll');
-
 		};
 
 		ScrollableHA.prototype.getMaskSize = function () {
@@ -124,11 +123,7 @@
 		 * @return {jQuery}
 		 */
 		ScrollableHA.prototype.getScrollableEl = function () {
-			var selector;
-
-			selector = this.getSettings().selectors.scrollableEl;
-
-			return (typeof selector === 'undefined') ? this.getEl() : this._query(selector);
+			return this._resolveElement(this.getSettings().selectors.scrollableEl);
 		};
 
 		ScrollableHA.prototype.getChildren = function (forceQuery) {
