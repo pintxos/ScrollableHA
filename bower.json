@@ -10,6 +10,7 @@
 		"Gruntfile.js",
 		"package.json"
 	],
+	"main": "index.js",
 	"authors": [
 		"Jelle Versele"
 	],
