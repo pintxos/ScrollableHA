@@ -68,7 +68,11 @@
 		 * @return {void}
 		 */
 		ScrollableHA.prototype.init = function () {
-			this.setScrollPos(0);
+
+			if(this.getScrollPos() === undefined) {
+				this.setScrollPos(0);
+			}
+
 			ScrollableHA._super.init.call(this);
 		};
 
