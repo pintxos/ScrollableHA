@@ -72,13 +72,16 @@
 			ScrollableHA._super.init.call(this);
 		};
 
+		ScrollableHA.prototype.destroy = function () {
+			setCssTransform(this.getChildren(), '');
+		};
+
 		ScrollableHA.prototype._getProp = function (prop) {
 			return _props[this._settings.orientation][prop];
 		};
 
 		ScrollableHA.prototype.getScrollPos = function () {
-
-			return $.data(this.getScrollableEl(), 'scrollPos');
+			return $.data(this.getScrollableEl()[0], 'scrollPos');
 		};
 
 		ScrollableHA.prototype.setScrollPos = function (pos) {
@@ -95,7 +98,7 @@
 
 			this._scrollPos = pos;
 
-			$.data(this.getScrollableEl(), 'scrollPos', pos);
+			$.data(this.getScrollableEl()[0], 'scrollPos', pos);
 
 			this.getScrollableEl().trigger('scroll');
 		};
