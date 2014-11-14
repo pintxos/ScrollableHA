@@ -1,6 +1,6 @@
 {
 	"name": "pintxos-scrollable_ha",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"homepage": "https://github.com/pintxos/ScrollableHA",
 	"ignore": [
 		"**/.*",
@@ -15,9 +15,9 @@
 		"Jelle Versele"
 	],
 	"dependencies": {
-		"pintxos-component": "~1.0.2",
-		"pintxos-inherit": "~2.0.0",
+		"pintxos-component": ">=1.0.2",
+		"pintxos-inherit": ">=2.0.0",
 		"eventEmitter": "~4.2.9",
-		"jQuery": "~2.1.1"
+		"jQuery": ">=1.7.0"
 	}
 }
